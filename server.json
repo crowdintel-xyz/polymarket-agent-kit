@@ -1,8 +1,8 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.crowdintel-xyz/polymarket-agent-kit",
-  "title": "CrowdIntel — Polymarket Wallet Intelligence",
-  "description": "Polymarket wallet intelligence for AI agents: scored wallets, insider signals, whale flow.",
+  "title": "CrowdIntel — Polymarket Wallet & Flow Data",
+  "description": "Ask about any Polymarket wallet, market, or funding cluster from Claude or Cursor: resolved PnL, shrinkage-adjusted win rate, insider score, cluster membership, and trade history. 21 read-only tools, token-authenticated.",
   "version": "1.0.0",
   "websiteUrl": "https://crowdintel.xyz",
   "repository": {

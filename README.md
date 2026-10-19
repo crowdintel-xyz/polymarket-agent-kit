@@ -1,6 +1,12 @@
 # Polymarket Agent Kit
 
-**Intelligence for Polymarket trading bots and AI agents** — scored wallets, insider signals, funding clusters, whale flow, and live market data over 1.88B indexed on-chain fills, delivered to your agent through MCP or REST.
+**Ask any Polymarket wallet, market, or funding cluster a question from your agent** — resolved PnL,
+shrinkage-adjusted win rate, insider score, cluster membership, and trade history, over 1.88B
+indexed on-chain fills. Delivered through MCP or REST.
+
+Not a price feed and not a trading bot: CrowdIntel answers *who is on the other side* and *is their
+edge real*. Use it for the decision, then execute through
+[Polymarket's official CLOB API](https://docs.polymarket.com/).
 
 The official [`Polymarket/agents`](https://github.com/Polymarket/agents) repo (3.7K★) was archived in May 2026 and no longer runs. This kit is a maintained, intelligence-first path for the same builders: connect your agent to the [CrowdIntel](https://crowdintel.xyz) MCP server for the *decision* side, and pair it with the official CLOB client for execution.
 
