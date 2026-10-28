@@ -1,0 +1,15 @@
+# ninja log v7
+2	704	1791932811922898384	CMakeFiles/test_market_discovery.dir/home/adlg/Escritorio/Proyectos/Bot_BajaLatencia/polymarket-agent-kit/tests/unit/test_market_discovery.cpp.o	9321023fa0ac2a05
+707	3250	1791932812627918100	bin/test_market_discovery	8f64166a89149ac4
+4	8	1791932811914898161	clean	ab5622173642aaf6
+3	143	1791944025695598896	build.ninja	e43483c0f3ec538f
+3	143	1791944025694598902	/home/adlg/Escritorio/Proyectos/Bot_BajaLatencia/polymarket-agent-kit/build_asan/cmake_install.cmake	e43483c0f3ec538f
+3	143	1791944025695254662	/home/adlg/Escritorio/Proyectos/Bot_BajaLatencia/polymarket-agent-kit/build_asan/CTestTestfile.cmake	e43483c0f3ec538f
+1	888	1791933582773743905	CMakeFiles/test_paper_broker.dir/home/adlg/Escritorio/Proyectos/Bot_BajaLatencia/polymarket-agent-kit/tests/unit/test_paper_broker.cpp.o	bf79571255abbd74
+888	3648	1791933583660768421	bin/test_paper_broker	60ec9fb434839e7f
+4	1109	1791944025715598785	CMakeFiles/test_paper_broker.dir/home/adlg/Escritorio/Proyectos/Bot_BajaLatencia/polymarket-agent-kit/tests/unit/test_paper_broker.cpp.o	ff404be8dd53fb68
+1109	3433	1791944026820592622	bin/test_paper_broker	aa369421a859540c
+2	464	1791944029180579460	CMakeFiles/test_maker_bid_metrics.dir/home/adlg/Escritorio/Proyectos/Bot_BajaLatencia/polymarket-agent-kit/tests/unit/test_maker_bid_metrics.cpp.o	24a4642fec2f268c
+464	2194	1791944029642576883	bin/test_maker_bid_metrics	2ab01525c1c22639
+2	1009	1791944031392567123	CMakeFiles/test_nightly_audit.dir/home/adlg/Escritorio/Proyectos/Bot_BajaLatencia/polymarket-agent-kit/tests/unit/test_nightly_audit.cpp.o	cc0e0c028af31d60
+1009	3105	1791944032398561513	bin/test_nightly_audit	351b33074218c064

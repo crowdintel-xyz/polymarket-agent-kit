@@ -1,0 +1,4 @@
+/home/adlg/Escritorio/Proyectos/Bot_BajaLatencia/polymarket-agent-kit/build_asan/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/foo.dir
+/home/adlg/Escritorio/Proyectos/Bot_BajaLatencia/polymarket-agent-kit/build_asan/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/boo.dir
+/home/adlg/Escritorio/Proyectos/Bot_BajaLatencia/polymarket-agent-kit/build_asan/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/edit_cache.dir
+/home/adlg/Escritorio/Proyectos/Bot_BajaLatencia/polymarket-agent-kit/build_asan/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/rebuild_cache.dir

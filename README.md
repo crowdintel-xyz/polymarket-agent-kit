@@ -8,9 +8,12 @@ Not a price feed and not a trading bot: CrowdIntel answers *who is on the other 
 edge real*. Use it for the decision, then execute through
 [Polymarket's official CLOB API](https://docs.polymarket.com/).
 
-The official [`Polymarket/agents`](https://github.com/Polymarket/agents) repo (3.7K★) was archived in May 2026 and no longer runs. This kit is a maintained, intelligence-first path for the same builders: connect your agent to the [CrowdIntel](https://crowdintel.xyz) MCP server for the *decision* side, and pair it with the official CLOB client for execution.
+This repo contains two components:
 
-> **Read-only by design.** No custody, no order placement, no keys to your funds. Your agent decides with CrowdIntel data; it trades through [Polymarket's official CLOB API](https://docs.polymarket.com/). Not affiliated with Polymarket — see [DISCLAIMER](DISCLAIMER.md).
+1. **MCP server** (TypeScript) — the `server.json` entry point exposes 40+ read-only tools to Claude Desktop / Cursor / any MCP client. No keys, no custody, no order placement.
+2. **C++20 trading engine** (`core/`) — a latency-optimized engine ported from PolyWhales bots: WebSocket sessions, L2 book archive, market discovery, paper broker, maker-bid metrics, and nightly audit. 36 unit tests, ASan/UBSan clean.
+
+> **Read-only by design.** This kit never places real orders. Your agent decides with CrowdIntel data; it trades through [Polymarket's official CLOB API](https://docs.polymarket.com/). Not affiliated with Polymarket — see [DISCLAIMER](DISCLAIMER.md).
 
 ## 60-second quickstart (Claude Desktop)
 
@@ -56,12 +59,11 @@ Full parameter reference: [docs/tools.md](docs/tools.md).
 3. **Find a coordinated ring before it resolves** — `scan_insider_signals` / `find_funding_clusters` → `get_cluster`.
 4. **Category-specialist copy-trade screen** — `screen_wallets_by_edge` → `get_leaderboard`.
 
-Each recipe ends where execution begins: hand the decision to the official CLOB client. This kit never places orders.
+Each recipe ends where execution begins: hand the decision to the official CLOB client.
 
 ## Agent Skills
 
-Four drop-in skills for Claude / Cursor / any Agent-Skills client — each one is
-a procedure, not a prompt, and each states where its numbers come from:
+Four drop-in skills for Claude / Cursor / any Agent-Skills client — each is a procedure, not a prompt, stating where its numbers come from:
 
 | Skill | Use it to |
 | --- | --- |
@@ -72,9 +74,41 @@ a procedure, not a prompt, and each states where its numbers come from:
 
 Copy `skills/` into `~/.claude/skills/` (or your client's skills directory).
 
+## C++ trading engine (`core/`)
+
+Low-latency engine ported from PolyWhales bots (TypeScript → C++20, no TS copied).
+
+```
+./scripts_build_offline.sh     # Build with ASan/UBSan/TSan
+./build/bin/test_*             # Run individual test binaries
+ctest --test-dir build          # Run all 36 tests
+```
+
+| Module | Purpose | Tests |
+| --- | --- | --- |
+| `clob_ws_session.hpp` | CLOB WebSocket: ping 10s, stall 45s, backoff+jitter, REST resync | 5 / 11 checks |
+| `l2_book_archive.hpp` | L2 book: dedup, 5s throttle, 14-day retention, daily rotation | 5 / 14 checks |
+| `market_discovery.hpp` | Gamma event discovery: no-failure caching, quarantine, YES/NO verification | 5 / 18 checks |
+| `paper_broker.hpp` | Paper trading: tape-backed fills, taker/maker, price-improvement refusal | 7 / 17 checks |
+| `maker_bid_metrics.hpp` | Maker-bid fill-rate (polywhales: 2/69 bids touched) | 6 / 25 checks |
+| `nightly_audit.hpp` | Nightly score + audit: structural checks, tape invariant, JSONL report | 8 / 14 checks |
+
+**Fee model:** unified `0.072` taker rate (`FeeCalculator::TAKER_FEE_RATE`). Polymarket docs specify 0.07 taker with 20% maker rebate → single constant. Maker rebate is **not** credited in paper trading.
+
+## Build
+
+```bash
+# C++ engine (offline, no external dependencies)
+./scripts_build_offline.sh
+
+# MCP server (TypeScript)
+npm install
+npm run build   # or: npx tsx server.ts
+```
+
 ## Rate limits
 
-Every tool answers on a free token; paid tiers raise the caps (see [pricing](https://crowdintel.xyz/pricing)). MCP daily calls: 20 free / 50 Pro / 300 Terminal / 1,500 Terminal Pro. REST: 50 req/hr free up to 5,000 req/hr Terminal Pro.
+Every MCP tool answers on a free token; paid tiers raise the caps (see [pricing](https://crowdintel.xyz/pricing)). MCP daily calls: 20 free / 50 Pro / 300 Terminal / 1,500 Terminal Pro. REST: 50 req/hr free up to 5,000 req/hr Terminal Pro.
 
 ## Links
 
